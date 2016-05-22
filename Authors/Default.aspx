@@ -13,7 +13,7 @@
     </HeaderTemplate>
   <ItemTemplate>
       <tr>
-          <td><span><%# Eval("FirstName") %> <%# Eval("LastName") %></span></td>
+          <td><span><a href="EditAuthor.aspx?AuthId=<%# Eval("AuthorID")%>"><%# Eval("FirstName") %> <%# Eval("LastName") %></a></span></td>
       </tr>
   </ItemTemplate>
     <FooterTemplate>
