@@ -67,7 +67,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Author.cs" />
-    <Compile Include="Models\AuthorContext.cs" />
+    <Compile Include="Models\AuthorBook.cs" />
+    <Compile Include="Models\AuthorsContext.cs" />
     <Compile Include="Models\AuthorDatabaseInitializer.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

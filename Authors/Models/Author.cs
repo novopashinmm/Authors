@@ -17,6 +17,6 @@ namespace Authors.Models
         [Required, StringLength(100), Display(Name = "LastName")]
         public string LastName { get; set; }
         public DateTime Birthday { get; set; }
-        public virtual ICollection<Book> Books { get; set; } 
+        public virtual ICollection<AuthorBook> AuthorBooks { get; set; } 
     }
 }

@@ -14,6 +14,6 @@ namespace Authors.Models
         public string Name { get; set; }
         public int? TotalPages { get; set; }
         public string Genre { get; set; }
-        public virtual List<Author> Authors { get; set; } 
+        public virtual ICollection<AuthorBook> AuthorBooks { get; set; } 
     }
 }

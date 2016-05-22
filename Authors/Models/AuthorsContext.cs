@@ -6,11 +6,12 @@ using System.Web;
 
 namespace Authors.Models
 {
-    public class AuthorContext : DbContext
+    public class AuthorsContext : DbContext
     {
-        public AuthorContext() : base("Authors") { }
+        public AuthorsContext() : base("Authors") { }
 
         public DbSet<Author> Authors { get; set; }
-        public DbSet<Book> Books { get; set; } 
+        public DbSet<Book> Books { get; set; }
+        public DbSet<AuthorBook> AuthorBooks { get; set; }
     }
 }
