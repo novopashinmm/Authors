@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Authors.Models
 {
-    public class AuthorDatabaseInitializer : DropCreateDatabaseIfModelChanges<AuthorsContext>
+    public class AuthorDatabaseInitializer : DropCreateDatabaseAlways<AuthorsContext>
     {
         protected override void Seed(AuthorsContext context)
         {
@@ -15,11 +15,11 @@ namespace Authors.Models
             {
                 new Book() {Genre = "Programming", Name = "CLR via C#", TotalPages = 900},
                 new Book() {Genre = "Programming", Name = "Asp.net 4.5", TotalPages = 900},
-                new Book() {Genre = "Programming", Name = "Patterns of design", TotalPages = 900}
+                new Book() {Genre = "Programming", Name = "Patterns of design", TotalPages = 900},
+                new Book() {Genre = "Programming", Name = "New book", TotalPages = 900}
             };
 
             books.ForEach(p => context.Books.AddOrUpdate(p));
-            context.SaveChanges();
 
             var authors = new List<Author>
             {
@@ -28,49 +28,49 @@ namespace Authors.Models
                     Birthday = new DateTime(1950, 5, 22),
                     FirstName = "Adam",
                     LastName = "Freeman",
-                    MiddleName = ""
+                    MiddleName = "sdf"
                 },
                 new Author()
                 {
                     Birthday = new DateTime(1950, 5, 22),
                     FirstName = "Jeffry",
                     LastName = "Richter",
-                    MiddleName = ""
+                    MiddleName = "sdf"
                 },
                 new Author()
                 {
                     Birthday = new DateTime(1950, 5, 22),
                     FirstName = "Erich",
                     LastName = "Gamma",
-                    MiddleName = ""
+                    MiddleName = "sdf"
                 },
                 new Author()
                 {
                     Birthday = new DateTime(1950, 5, 22),
                     FirstName = "Richard",
                     LastName = "Helm",
-                    MiddleName = ""
+                    MiddleName = "sdf"
                 },
                 new Author()
                 {
                     Birthday = new DateTime(1950, 5, 22),
                     FirstName = "Ralf",
                     LastName = "Jonson",
-                    MiddleName = ""
+                    MiddleName = "sdf"
                 },
                 new Author()
                 {
                     Birthday = new DateTime(1950, 5, 22),
                     FirstName = "John",
                     LastName = "Vlissidis",
-                    MiddleName = ""
+                    MiddleName = "sdf"
                 }
             };
 
             authors.ForEach(p => context.Authors.AddOrUpdate(p));
             context.SaveChanges();
 
-            var AuthorBooks = new List<AuthorBook>()
+            var authorBooks = new List<AuthorBook>()
             {
                 new AuthorBook
                 {
@@ -103,6 +103,9 @@ namespace Authors.Models
                     BookID = books.Single(b => b.Name == "Patterns of design").BookID
                 }
             };
+
+            authorBooks.ForEach(p => context.AuthorBooks.AddOrUpdate(p));
+            context.SaveChanges();
         }
     }
 }

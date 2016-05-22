@@ -16,6 +16,9 @@ namespace Authors.Models
         public string MiddleName { get; set; }
         [Required, StringLength(100), Display(Name = "LastName")]
         public string LastName { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Birthday")]
         public DateTime Birthday { get; set; }
         public virtual ICollection<AuthorBook> AuthorBooks { get; set; } 
     }
