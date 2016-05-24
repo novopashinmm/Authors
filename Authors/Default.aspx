@@ -6,7 +6,7 @@
                <table border="0" cellpadding="0" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>ФИО</th>
+                            <th>Authors:</th>
                         </tr>
                     </thead>
                     <tbody>

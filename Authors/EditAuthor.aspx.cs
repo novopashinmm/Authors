@@ -30,7 +30,9 @@ namespace Authors
 
             var bookId = qAuthorBooks.Where(s=> s.AuthorID == author.AuthorID).Select(p => p.BookID);
             var listBooks = bookId.Select(id => qBooks.Single(p => p.BookID == id)).ToList();
-            BookName.Text = listBooks.First().Name;
+
+            this.SubRepeater.DataSource = listBooks;
+            this.SubRepeater.DataBind();
         }
     }
 }

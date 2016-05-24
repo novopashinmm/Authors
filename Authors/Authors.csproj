@@ -63,6 +63,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddBook.html" />
+    <Content Include="Content\Style.css" />
     <Content Include="Default.aspx" />
     <Content Include="EditAuthor.aspx" />
     <Content Include="Global.asax" />
@@ -105,7 +107,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_Start\" />
-    <Folder Include="Content\" />
     <Folder Include="Controls\" />
     <Folder Include="Pages\" />
     <Folder Include="Scripts\" />

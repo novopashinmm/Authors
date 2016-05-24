@@ -22,6 +22,15 @@ namespace Authors {
         protected global::System.Web.UI.HtmlControls.HtmlForm editForm;
         
         /// <summary>
+        /// LastName элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox LastName;
+        
+        /// <summary>
         /// FirstName элемент управления.
         /// </summary>
         /// <remarks>
@@ -40,21 +49,12 @@ namespace Authors {
         protected global::System.Web.UI.WebControls.TextBox MiddleName;
         
         /// <summary>
-        /// LastName элемент управления.
+        /// SubRepeater элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox LastName;
-        
-        /// <summary>
-        /// BookName элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label BookName;
+        protected global::System.Web.UI.WebControls.Repeater SubRepeater;
     }
 }
