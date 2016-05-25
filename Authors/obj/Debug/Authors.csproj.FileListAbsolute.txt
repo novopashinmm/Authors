@@ -1,0 +1,10 @@
+C:\Users\Santa Kufff\Documents\GitHub\Authors\Authors\bin\Authors.dll.config
+C:\Users\Santa Kufff\Documents\GitHub\Authors\Authors\bin\Authors.dll
+C:\Users\Santa Kufff\Documents\GitHub\Authors\Authors\bin\Authors.pdb
+C:\Users\Santa Kufff\Documents\GitHub\Authors\Authors\bin\EntityFramework.dll
+C:\Users\Santa Kufff\Documents\GitHub\Authors\Authors\bin\EntityFramework.SqlServer.dll
+C:\Users\Santa Kufff\Documents\GitHub\Authors\Authors\bin\EntityFramework.xml
+C:\Users\Santa Kufff\Documents\GitHub\Authors\Authors\bin\EntityFramework.SqlServer.xml
+C:\Users\Santa Kufff\Documents\GitHub\Authors\Authors\obj\Debug\Authors.dll
+C:\Users\Santa Kufff\Documents\GitHub\Authors\Authors\obj\Debug\Authors.pdb
+C:\Users\Santa Kufff\Documents\GitHub\Authors\Authors\obj\Debug\Authors.csprojResolveAssemblyReference.cache
