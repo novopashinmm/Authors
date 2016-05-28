@@ -1,13 +1,14 @@
 ﻿table.t1 {
     width: 300px;
     border: 1px solid black;
-}
-table.t1 td {
     padding: 3px;
 }
-table.t1 td.l {
+/*table.t1 td {
+    padding: 3px;
+}*/
+/*table.t1 td.l {
     text-align: right;
 }
 table.t1 td.r {
     text-align: left;
-}
+}*/

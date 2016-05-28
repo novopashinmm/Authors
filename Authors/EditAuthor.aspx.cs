@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
+using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Authors.Models;
@@ -53,30 +54,49 @@ namespace Authors
                 LastName = LastName.Text
             };
 
-            _db.Authors.AddOrUpdate(newAuthor);
+            int newAuthorID;
+            var author = _db.Authors.Select(s =>
+                    s).First(p => p.FirstName == newAuthor.FirstName && p.LastName == newAuthor.LastName &&
+                    p.MiddleName == newAuthor.MiddleName);
+            if (author != null)
+            {
+                newAuthorID = author.AuthorID;
+            }
+            else
+            {
+                _db.Authors.AddOrUpdate(newAuthor);
+                _db.SaveChanges();
+                newAuthorID = _db.Authors.Select(s =>
+                    s).First(p => p.FirstName == newAuthor.FirstName && p.LastName == newAuthor.LastName &&
+                                  p.MiddleName == newAuthor.MiddleName).AuthorID;
+            }
+
+            
 
             bool endCycle = false;
+            int i = 1;
             while (!endCycle)
             {
-                int i = 0;
-                var ctrlBookName = (Label)this.FindControl("BookName" + i);
-                var ctrlGenre = (Label)this.FindControl("Genre" + i);
-                var ctrlPages = (Label)this.FindControl("Pages" + i);
+                var ctrlBookName = Page.Request.Form["BookName" + i].ToString();
+                var ctrlGenre = Page.Request.Form["Genre" + i].ToString();
+                var ctrlPages = Page.Request.Form["TotalPages" + i].ToString();
                 var newBook = new Book
                 {
-                    Name = ctrlBookName.Text,
-                    Genre = ctrlGenre.Text,
-                    TotalPages = int.Parse(ctrlPages.Text)
+                    Name = ctrlBookName,
+                    Genre = ctrlGenre,
+                    TotalPages = int.Parse(ctrlPages)
                 };
                 _db.Books.AddOrUpdate(newBook);
+                _db.SaveChanges();
 
                 var newAuthBook = new AuthorBook()
                 {
-                    AuthorID = newAuthor.AuthorID,
+                    AuthorID = newAuthorID,
                     BookID = newBook.BookID
                 };
 
                 _db.AuthorBooks.AddOrUpdate(newAuthBook);
+                _db.SaveChanges();
 
                 if (ctrlBookName == null && ctrlGenre == null && ctrlPages == null)
                     endCycle = true;
