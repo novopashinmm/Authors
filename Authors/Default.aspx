@@ -17,6 +17,9 @@
       </tr>
   </ItemTemplate>
     <FooterTemplate>
+        <tr>
+            <td><span><a href="EditAuthor.aspx">Добавить автора</a></span></td>
+        </tr>
                     </tbody>
                 </table>
     </FooterTemplate>

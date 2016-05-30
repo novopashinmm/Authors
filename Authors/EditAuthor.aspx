@@ -40,11 +40,11 @@
                                         break;
                                     case 2:
                                         window['$span' + i] = $("<span>", { id: "TotalPages" + j });
-                                        window['$input' + i] = $("<input>", { type: "text", name: "TotalPages" + j, hidden: "true", value: $("#AddBook_Genre").val() });
+                                        window['$input' + i] = $("<input>", { type: "text", name: "TotalPages" + j, hidden: "true", value: $("#AddBook_Pages").val() });
                                         break;
                                     case 3:
                                         window['$span' + i] = $("<span>", { id: "Genre" + j });
-                                        window['$input' + i] = $("<input>", { type: "text", name: "Genre" + j, hidden: "true", value: $("#AddBook_Pages").val() });
+                                        window['$input' + i] = $("<input>", { type: "text", name: "Genre" + j, hidden: "true", value: $("#AddBook_Genre").val() });
                                         break;
                                 default:
                                 }
@@ -121,11 +121,9 @@
 
             <hr style="width: 75%; color: rgb(151, 7, 11);">
             <asp:Repeater ID="SubRepeater" runat="server">
-                <HeaderTemplate>
+                <ItemTemplate>
                     <table class="t1" border="0" cellpadding="0" cellspacing="0" style="margin-right: auto; margin-left: auto">
                     <tbody>
-                </HeaderTemplate>
-                <ItemTemplate>
                     <tr>
                         <td class="l" width="50%">
                             <label>Название:&nbsp;&nbsp;</label>
@@ -153,13 +151,11 @@
                             <input type="text" value="<%# Eval("TotalPages") %>" name="TotalPages<%# Container.ItemIndex + 1 %>" hidden="true"/>
                         </td>
                     </tr>
-                </ItemTemplate>
-                <FooterTemplate>
                     </tbody>
                     </table>
-                </FooterTemplate>
+                    <br/>
+                </ItemTemplate>
             </asp:Repeater>
-                <br/>
             </div>
             <asp:Button runat="server" Text="Сохранить" ID="Save" OnClick="Save_OnClick"/>
         </div>
