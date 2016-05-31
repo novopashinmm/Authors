@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Web;
-using System.Web.Services.Description;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using Authors.Models;
 
 namespace Authors
 {
-    public partial class EditAuthor : System.Web.UI.Page
+    public partial class EditAuthor : Page
     {
 
 
@@ -26,10 +23,10 @@ namespace Authors
             int intAuthId;
             int.TryParse(authId, out intAuthId);
 
-            var _db = new AuthorsContext();
-            IList<Author> qAuthors = _db.Authors.Select(p => p).ToList();
-            IList<Book> qBooks = _db.Books.Select(p => p).ToList();
-            IList<AuthorBook> qAuthorBooks = _db.AuthorBooks.Select(p => p).ToList();
+            var db = new AuthorsContext();
+            IList<Author> qAuthors = db.Authors.Select(p => p).ToList();
+            IList<Book> qBooks = db.Books.Select(p => p).ToList();
+            IList<AuthorBook> qAuthorBooks = db.AuthorBooks.Select(p => p).ToList();
 
             var author = qAuthors.Single(p => p.AuthorID == intAuthId);
             FirstName.Text = author.FirstName;
@@ -46,13 +43,10 @@ namespace Authors
 
         protected void Save_OnClick(object sender, EventArgs e)
         {
-            var _db = new AuthorsContext();
-            IList<Author> qAuthors = _db.Authors.Select(p => p).ToList();
-            IList<Book> qBooks = _db.Books.Select(p => p).ToList();
-            IList<AuthorBook> qAuthorBooks = _db.AuthorBooks.Select(p => p).ToList();
+            var db = new AuthorsContext();
 
             int newAuthorID;
-            var authors = _db.Authors.Select(s =>
+            var authors = db.Authors.Select(s =>
                     s).ToList();
             var author = authors.FirstOrDefault(p => p.FirstName == FirstName.Text && p.LastName == LastName.Text &&
                     p.MiddleName == MiddleName.Text);
@@ -69,9 +63,9 @@ namespace Authors
                     MiddleName = MiddleName.Text,
                     Birthday = new DateTime(1950, 5, 5)
                 };
-                _db.Authors.AddOrUpdate(author);
-                _db.SaveChanges();
-                newAuthorID = _db.Authors.Select(s =>
+                db.Authors.AddOrUpdate(author);
+                db.SaveChanges();
+                newAuthorID = db.Authors.Select(s =>
                     s).First(p => p.FirstName == author.FirstName && p.LastName == author.LastName &&
                                   p.MiddleName == author.MiddleName).AuthorID;
             }
@@ -84,7 +78,7 @@ namespace Authors
                 var ctrlBookName = Page.Request.Form["BookName" + i];
                 var ctrlGenre = Page.Request.Form["Genre" + i];
                 int ctrlPages;
-                var ctrlPagesReq = int.TryParse((Page.Request.Form["TotalPages" + i]), out ctrlPages);
+                int.TryParse((Page.Request.Form["TotalPages" + i]), out ctrlPages);
 
                 if (ctrlBookName == null &&
                     ctrlGenre == null &&
@@ -95,7 +89,7 @@ namespace Authors
                 }
 
                 int newBookID;
-                var books = _db.Books.Select(s =>
+                var books = db.Books.Select(s =>
                     s).ToList();
                 var book = books.FirstOrDefault(p => p.Name == ctrlBookName && p.Genre == ctrlGenre && p.TotalPages == ctrlPages);
                 if (book != null)
@@ -110,10 +104,10 @@ namespace Authors
                         Genre = ctrlGenre,
                         TotalPages = ctrlPages
                     };
-                    _db.Books.AddOrUpdate(book);
-                    _db.SaveChanges();
+                    db.Books.AddOrUpdate(book);
+                    db.SaveChanges();
                     newBookID =
-                        _db.Books.Select(s => s)
+                        db.Books.Select(s => s)
                             .First(
                                 p =>
                                     p.Name == ctrlBookName && p.Genre == ctrlGenre &&
@@ -121,7 +115,7 @@ namespace Authors
                             .BookID;
                 }
 
-                var newAuthBooks = _db.AuthorBooks.Select(s =>
+                var newAuthBooks = db.AuthorBooks.Select(s =>
                     s).ToList();
                 var newAuthBook = newAuthBooks.FirstOrDefault(p => p.AuthorID == newAuthorID && p.BookID == newBookID);
                 if (newAuthBook == null)
@@ -131,8 +125,8 @@ namespace Authors
                         AuthorID = author.AuthorID,
                         BookID = book.BookID
                     };
-                    _db.AuthorBooks.AddOrUpdate(newAuthBook);
-                    _db.SaveChanges();
+                    db.AuthorBooks.AddOrUpdate(newAuthBook);
+                    db.SaveChanges();
                 }
             }
 

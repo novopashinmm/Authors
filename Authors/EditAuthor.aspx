@@ -5,6 +5,7 @@
 
 <head>
     <link rel="stylesheet" href="Content/Style.css"/>
+    <link rel="stylesheet" type="text/css" href="Content/bootstrap.min.css"/>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
     <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -27,7 +28,7 @@
                                     endCycle = true;
                                 }
                             }
-                            var $table = $("<table>", { class: "t1", border: "0", cellpadding: "0", cellspacing: "0", style: "margin-right: auto; margin-left: auto" });
+                            var $table = $("<table>", { class: "t1", border: "0", cellpadding: "0", cellspacing: "0"});
                             for (var i = 1; i < 4; i++) {
                                 window['$tr'+i] = $("<tr>");
                                 window['$td'+i+'l'] = $("<td width='50%'>", { class: "l" });
@@ -96,75 +97,104 @@
     <form id="editForm" runat="server">
         <div>
             <asp:Label runat="server" ID="AuthorID" Visible="False"></asp:Label>
-            <div id="AllInfo">
-            <table style="margin-left: auto; margin-right: auto">
-                <tr>
-                    <td><asp:Label runat="server" Text="Фамилия"></asp:Label></td>
-                    <td><asp:TextBox ID="LastName" runat="server"></asp:TextBox><br/></td>
-                </tr>
-                <tr>
-                    <td><asp:Label runat="server" Text="Имя"></asp:Label></td>
-                    <td><asp:TextBox ID="FirstName"  runat="server"></asp:TextBox><br/></td>
-                </tr>
-                <tr>
-                    <td><asp:Label runat="server" Text="Отчество"></asp:Label></td>
-                    <td><asp:TextBox ID="MiddleName" runat="server"></asp:TextBox><br/></td>
-                </tr>
-            </table>
-            <br/>
-            <br/>
-            <br/>
-            <label style="margin-right: auto">Книги</label>
+            
+            <div class="container" style="padding: 2em 2em 4em">
+                
+                <div class="row" style="padding: 0.5em 0.5em 0.5em">
+                    <div class="col-md-1 text-left">
+                        <asp:Label runat="server" Text="Фамилия"></asp:Label>
+                    </div>
+                    <div class="col-md-11">
+                        <asp:TextBox ID="LastName" runat="server" Width="100%"></asp:TextBox>
+                    </div>
+                </div>
 
-            <a href="#" id="btnAddBook">Добавить книгу</a>
-        
+                <div class="row" style="padding: 0.5em 0.5em 0.5em">
+                    <div class="col-md-1 text-left">
+                        <asp:Label runat="server" Text="Имя"></asp:Label>
+                    </div>
+                    <div class="col-md-11">
+                        <asp:TextBox ID="FirstName" runat="server" Width="100%"></asp:TextBox>
+                    </div>
+                </div>
+                    
+                <div class="row" style="padding: 0.5em 0.5em 0.5em">
+                    <div class="col-md-1 text-left">
+                        <asp:Label runat="server" Text="Отчество"></asp:Label>
+                    </div>
+                    <div class="col-md-11">
+                        <asp:TextBox ID="MiddleName" runat="server" Width="100%"></asp:TextBox>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 text-left">
+                        <label style="margin-right: auto">Книги</label>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <a href="#" id="btnAddBook">Добавить книгу</a>
+                    </div>
+                </div>
+            </div>
 
             <hr style="width: 75%; color: rgb(151, 7, 11);">
-            <asp:Repeater ID="SubRepeater" runat="server">
-                <ItemTemplate>
-                    <table class="t1" border="0" cellpadding="0" cellspacing="0" style="margin-right: auto; margin-left: auto">
-                    <tbody>
-                    <tr>
-                        <td class="l" width="50%">
-                            <label>Название:&nbsp;&nbsp;</label>
-                        </td>
-                        <td class="r" width="50%">
-                            <span id="BookName<%# Container.ItemIndex + 1 %>"><%# Eval("Name") %></span>
-                            <input type="text" value="<%# Eval("Name") %>" name="BookName<%# Container.ItemIndex + 1 %>" hidden="true"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="l" width="50%">
-                            <label>Жанр:&nbsp;&nbsp;</label>
-                        </td>
-                        <td width="50%">
-                            <span id="Genre<%# Container.ItemIndex + 1 %>"><%# Eval("Genre") %></span>
-                            <input type="text" value="<%# Eval("Genre") %>" name="Genre<%# Container.ItemIndex + 1 %>" hidden="true"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="l" width="50%">
-                            <label>Кол-во страниц:&nbsp;&nbsp;</label>
-                        </td>
-                        <td class="r" width="50%">
-                            <span id="TotalPages<%# Container.ItemIndex + 1 %>"><%# Eval("TotalPages") %></span>
-                            <input type="text" value="<%# Eval("TotalPages") %>" name="TotalPages<%# Container.ItemIndex + 1 %>" hidden="true"/>
-                        </td>
-                    </tr>
-                    </tbody>
-                    </table>
-                    <br/>
-                </ItemTemplate>
-            </asp:Repeater>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-left">
+                        <div id="AllInfo">
+                            <asp:Repeater ID="SubRepeater" runat="server">
+                                <ItemTemplate>
+                                    <table class="t1" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                    <tr>
+                                        <td class="l" width="50%">
+                                            <label>Название:&nbsp;&nbsp;</label>
+                                        </td>
+                                        <td class="r" width="50%">
+                                            <span id="BookName<%# Container.ItemIndex + 1 %>"><%# Eval("Name") %></span>
+                                            <input type="text" value="<%# Eval("Name") %>" name="BookName<%# Container.ItemIndex + 1 %>" hidden="true"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="l" width="50%">
+                                            <label>Жанр:&nbsp;&nbsp;</label>
+                                        </td>
+                                        <td width="50%">
+                                            <span id="Genre<%# Container.ItemIndex + 1 %>"><%# Eval("Genre") %></span>
+                                            <input type="text" value="<%# Eval("Genre") %>" name="Genre<%# Container.ItemIndex + 1 %>" hidden="true"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="l" width="50%">
+                                            <label>Кол-во страниц:&nbsp;&nbsp;</label>
+                                        </td>
+                                        <td class="r" width="50%">
+                                            <span id="TotalPages<%# Container.ItemIndex + 1 %>"><%# Eval("TotalPages") %></span>
+                                            <input type="text" value="<%# Eval("TotalPages") %>" name="TotalPages<%# Container.ItemIndex + 1 %>" hidden="true"/>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    </table>
+                                    <br/>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                          </div>
+                    </div>
+                </div>
             </div>
-            <asp:Button runat="server" Text="Сохранить" ID="Save" OnClick="Save_OnClick"/>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-6 text-right">
+                        <asp:Button runat="server" class="btn btn-default" Text="Сохранить" ID="Save" OnClick="Save_OnClick"/>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>
         <div id="popup" title="Добавить книгу" style="display: none">
             <uc1:AddBook runat="server" ID="AddBook" />
-            <%--<h>BooksName</h><input id="BookName" type="text"/><br/>--%>
-        </div>
-            <%--<input id="btnAddBook" type="button" value="AddBook"/>--%>
         </div>
     </form>   
 </body> 
