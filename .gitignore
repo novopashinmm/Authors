@@ -1,0 +1,5 @@
+packages*/
+*.exe
+*.exe
+!NuGet.exe
+$ git add -f Nuget.exe 
